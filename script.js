@@ -29,6 +29,42 @@ function generateBarCode(text) {
   }
 }
 
+function getBase64Image(img) {
+  try {
+    var canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL('image/png', 1.0);
+    return dataURL;
+  } catch (error) {
+    throw new Error('getBase64Image: parameter must be an image element');
+  }
+}
+
+function convertDateToThai(date) {
+  try {
+    const year = date.slice(0, 4);
+    const month = date.slice(5, 7);
+    const day = date.slice(8, 10);
+
+    const thaiDate = new Date(year, month, day);
+    const result = thaiDate.toLocaleDateString('th-TH', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+    });
+
+    const firstPart = result.slice(0, result.length - 4);
+    const yearPart = 'พ.ศ.' + result.slice(-4);
+    return firstPart + yearPart;
+  } catch (error) {
+    throw new Error('convertDateToThai: parameter must be a string date');
+  }
+}
+
 function makePdf() {
   pdfMake.fonts = {
     Sarabun: {
