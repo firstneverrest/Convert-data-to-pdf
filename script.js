@@ -9,6 +9,26 @@ function getParameterByName(name, url = window.location.href) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+function generateBarCode(text) {
+  try {
+    var barcode = document.getElementById('barcode');
+    JsBarcode('#barcode', text.replace(/\\r/g, ' '), {
+      format: 'CODE128',
+      width: 0.8,
+      height: 45,
+      font: 'Sarabun-Regular.ttf',
+      fontSize: 8,
+      displayValue: true,
+    });
+    // convert svg (barcode) to svg text
+    var s = new XMLSerializer();
+    var barcodeSVGText = s.serializeToString(barcode);
+    return barcodeSVGText;
+  } catch (error) {
+    throw new Error('generateBarCode: parameter must be a string');
+  }
+}
+
 function makePdf() {
   pdfMake.fonts = {
     Sarabun: {
