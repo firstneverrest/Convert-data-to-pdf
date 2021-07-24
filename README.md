@@ -23,4 +23,4 @@ You can easily create pdf file by using pdfmake library. You can visit the [pdfm
         <script src='node_modules/pdfmake/build/vfs_fonts.js'></script>
     </head>
     ```
-9. finish setup
+9. finish setup and start coding
