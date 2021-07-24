@@ -1,6 +1,12 @@
 # Create PDF file from data
 You can easily create pdf file by using pdfmake library. You can visit the [pdfmake official website](https://pdfmake.github.io/docs/0.1/) to get more information.
 
+![image](convert-to-pdf-thumbnail.jpg)
+
+## Technologies
+![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![image](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
 ## Setup
 1. Create folder
 2. Run `npm init` and set entry point/main to index.html
@@ -10,18 +16,11 @@ You can easily create pdf file by using pdfmake library. You can visit the [pdfm
 6. In /node_modules/pdfmake run `node build-vfs.js ./examples/fonts` to keep font in vfs_fonts.js which enable you to use your own font.
 7. Finish setup
 8. In index.html at the head tag, include script tag to import pdfmake in the project.
-```javascript
-<head>
-    ...
-    <script src='node_modules/pdfmake/build/pdfmake.min.js'></script>
-    <script src='node_modules/pdfmake/build/vfs_fonts.js'></script>
-</head>
-```
+    ```javascript
+    <head>
+        ...
+        <script src='node_modules/pdfmake/build/pdfmake.min.js'></script>
+        <script src='node_modules/pdfmake/build/vfs_fonts.js'></script>
+    </head>
+    ```
 9. finish setup
-
-## Create button for making pdf file
-### 1. Create button for making pdf file
-Create button in index.html and add event listener in that button in script.js.
-
-### 2. Create function for making pdf file
-

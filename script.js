@@ -36,7 +36,7 @@ function getBase64Image(img) {
     canvas.height = img.height;
     var ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL('image/png', 1.0);
+    var dataURL = canvas.toDataURL('image/jpeg', 1.0);
     return dataURL;
   } catch (error) {
     throw new Error('getBase64Image: parameter must be an image element');
@@ -72,17 +72,42 @@ function makePdf() {
     },
   };
 
+  const building = getBase64Image(document.getElementById('building'));
+
   var docDefinition = {
     content: [
       {
-        text: 'Hello World',
+        text: 'Convert Data to PDF',
+        style: 'header',
+      },
+      "Let's Start with simple text, you can add columns, images, table, list and much more!\n\n",
+      {
+        columns: [
+          {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit, officiis viveremus aeternum superstitio suspicor alia nostram, quando nostros congressus susceperant concederetur leguntur iam, vigiliae democritea tantopere causae, atilii plerumque ipsas potitur pertineant multis rem quaeri pro, legendum didicisse credere ex maluisset per videtis. Cur discordans praetereat aliae ruinae dirigentur orestem. ',
+          },
+          {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit, officiis viveremus aeternum superstitio suspicor alia nostram, quando nostros congressus susceperant concederetur leguntur iam, vigiliae democritea tantopere causae, atilii plerumque ipsas potitur pertineant multis rem quaeri pro, legendum didicisse credere ex maluisset per videtis. Cur discordans praetereat aliae ruinae dirigentur orestem. ',
+          },
+        ],
+      },
+      "\nStar-sized columns have always equal widths, so if we define 3 of those, it'll look like this (make sure to scroll to the next page, as we have a couple of more examples):\n\n",
+      {
+        image: building,
+        width: 400,
       },
     ],
     defaultStyle: {
       font: 'Sarabun',
-      fontSize: 8,
+      fontSize: 10,
     },
-    pageMargins: [25, 40, 20, 20],
+    styles: {
+      header: {
+        fontSize: 14,
+        fontWeight: 600,
+      },
+    },
+    pageMargins: [30, 20, 30, 20],
   };
   // pdfMake.createPdf(docDefinition).download('BillPayment.pdf');
   pdfMake.createPdf(docDefinition).open();
